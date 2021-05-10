@@ -8,6 +8,9 @@ int main(int argl, char *argv[])
 	std::cin >> cmd;
 	while (cmd != "exit")
 	{
+		if (cmd == "record")
+		{
+		}
 		std::cin >> cmd;
 	}
 	return 0;

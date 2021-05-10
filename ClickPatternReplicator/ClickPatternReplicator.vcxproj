@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="ClickPatternReplicator.cpp" />
     <ClCompile Include="RecordPattern.c" />
+    <ClCompile Include="SaveLoad.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RecordPattern.h" />
+    <ClInclude Include="SaveLoad.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -59,5 +59,5 @@ void RecordPattern(struct Click **clicks)
     *clicks = malloc((len + 1) * sizeof(struct Click));
     memcpy(*clicks, arr, len * sizeof(struct Click));
     free(arr);
-    *(clicks + len) = NULL;
+    (*clicks)[len].button = 0;
 }
