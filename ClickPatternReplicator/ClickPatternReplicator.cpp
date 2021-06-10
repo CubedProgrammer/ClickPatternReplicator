@@ -1,3 +1,4 @@
+#include "windows.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,6 +12,13 @@ int main(int argl, char *argv[])
 	struct Click* clicks = nullptr;
 	std::string tmp;
 	int delay;
+	INPUT mi[2];
+	mi[0].type = INPUT_MOUSE;
+	mi[1].type = INPUT_MOUSE;
+	auto& [press, release] = mi;
+	press.mi.time = release.mi.time = 0;
+	press.mi.mouseData = release.mi.mouseData = 0;
+	press.mi.dx = press.mi.dy = release.mi.dx = release.mi.dy = 0;
 	while (cmd != "exit")
 	{
 		if (cmd == "record")
@@ -32,7 +40,29 @@ int main(int argl, char *argv[])
 		{
 			std::cin >> tmp;
 			delay = std::stoi(tmp);
-			for (size_t i = 0; clicks[i].button != 0; i++);
+			Sleep(delay * 1000);
+			for (size_t i = 0; clicks[i].button != 0; i++)
+			{
+				SetCursorPos(clicks[i].x, clicks[i].y);
+				switch (clicks[i].button)
+				{
+					case LBUTTON:
+						press.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+						release.mi.dwFlags = MOUSEEVENTF_LEFTUP;
+						break;
+					case MBUTTON:
+						press.mi.dwFlags = MOUSEEVENTF_MIDDLEDOWN;
+						release.mi.dwFlags = MOUSEEVENTF_MIDDLEUP;
+						break;
+					case RBUTTON:
+						press.mi.dwFlags = MOUSEEVENTF_RIGHTDOWN;
+						release.mi.dwFlags = MOUSEEVENTF_RIGHTUP;
+						break;
+				default:
+					break;
+				}
+				SendInput(2, mi, sizeof(mi[0]));
+			}
 		}
 		std::cin >> cmd;
 	}
