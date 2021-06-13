@@ -30,7 +30,9 @@ int main(int argl, char *argv[])
 		{
 			std::cin >> tmp;
 			RecordPattern(&clicks);
+			std::cout << "Recorded pattern." << std::endl;
 			SaveClickPattern(clicks, tmp.c_str());
+			std::cout << "Saved pattern." << std::endl;
 		}
 		else if (cmd == "load")
 		{

@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "RecordPattern.h"
@@ -13,7 +14,7 @@ void RecordPattern(struct Click **clicks)
     struct Click* tmp;
     POINT p;
 
-    while (!GetKeyState(VK_SPACE))
+    while (GetKeyState(VK_SPACE) >> shft == 0)
     {
         lb = GetAsyncKeyState(VK_LBUTTON) >> shft;
         mb = GetAsyncKeyState(VK_MBUTTON) >> shft;
@@ -59,5 +60,7 @@ void RecordPattern(struct Click **clicks)
     *clicks = malloc((len + 1) * sizeof(struct Click));
     memcpy(*clicks, arr, len * sizeof(struct Click));
     free(arr);
+    printf("%u\n", len);
+    fflush(stdout);
     (*clicks)[len].button = 0;
 }
