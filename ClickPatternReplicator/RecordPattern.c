@@ -60,7 +60,5 @@ void RecordPattern(struct Click **clicks)
     *clicks = malloc((len + 1) * sizeof(struct Click));
     memcpy(*clicks, arr, len * sizeof(struct Click));
     free(arr);
-    printf("%u\n", len);
-    fflush(stdout);
     (*clicks)[len].button = 0;
 }
