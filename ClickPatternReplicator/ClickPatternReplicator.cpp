@@ -38,6 +38,7 @@ int main(int argl, char *argv[])
 		{
 			std::cin >> tmp;
 			LoadClickPattern(&clicks, tmp.c_str());
+			std::cout << "Loaded pattern." << std::endl;
 		}
 		else if (cmd == "play")
 		{
@@ -63,6 +64,7 @@ int main(int argl, char *argv[])
 						break;
 				}
 				SendInput(2, mi, sizeof(mi[0]));
+				Sleep(100);
 			}
 		}
 		std::cin >> cmd;
