@@ -44,7 +44,9 @@ int main(int argl, char *argv[])
 		{
 			std::cin >> tmp;
 			delay = std::stoi(tmp);
+			std::cin >> tmp;
 			Sleep(delay * 1000);
+			delay = std::stoi(tmp);
 			for (size_t i = 0; clicks[i].button != 0; i++)
 			{
 				SetCursorPos(clicks[i].x, clicks[i].y);
@@ -64,7 +66,7 @@ int main(int argl, char *argv[])
 						break;
 				}
 				SendInput(2, mi, sizeof(mi[0]));
-				Sleep(100);
+				Sleep(delay);
 			}
 		}
 		std::cin >> cmd;
